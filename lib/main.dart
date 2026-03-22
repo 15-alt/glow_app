@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glowapp/constants/glow_colors.dart';
 
 import 'package:glowapp/models/doctor_model.dart';
 
@@ -8,6 +9,7 @@ import 'package:glowapp/screens/signUp_screen.dart';
 import 'package:glowapp/screens/setpassword_screen.dart';
 import 'package:glowapp/screens/doctor_screen.dart';
 import 'package:glowapp/screens/doctor_info_screen.dart';
+import 'package:glowapp/constants/glow_colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
 
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.lightBlue),
 
         scaffoldBackgroundColor: Colors.white,
 
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.white,
           elevation: 0,
           centerTitle: true,
-          iconTheme: IconThemeData(color: Colors.black),
+          iconTheme: IconThemeData(color: AppColors.gold),
           titleTextStyle: TextStyle(
             color: Colors.black,
             fontSize: 18,
@@ -43,6 +45,8 @@ class MyApp extends StatelessWidget {
         ),
 
         inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: AppColors.lightBlue,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
         ),
       ),

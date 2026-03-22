@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glowapp/constants/glow_colors.dart';
 import 'package:glowapp/models/doctor_model.dart';
 
 class DoctorScreen extends StatefulWidget {
@@ -57,9 +58,9 @@ class DoctorScreenState extends State<DoctorScreen> {
         centerTitle: true,
 
         actions: const [
-          Icon(Icons.search, color: Colors.black),
+          Icon(Icons.search, color: AppColors.lightBlue),
           SizedBox(width: 12),
-          Icon(Icons.tune, color: Colors.black),
+          Icon(Icons.tune, color: AppColors.lightBlue),
           SizedBox(width: 12),
         ],
       ),
@@ -74,7 +75,7 @@ class DoctorScreenState extends State<DoctorScreen> {
 
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: AppColors.gold,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -122,7 +123,7 @@ class DoctorScreenState extends State<DoctorScreen> {
                 trailing: IconButton(
                   icon: const Icon(
                     Icons.chat_bubble_outline,
-                    color: Colors.blue,
+                    color: AppColors.primaryBlue,
                   ),
 
                   onPressed: () {
@@ -143,7 +144,7 @@ class DoctorScreenState extends State<DoctorScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
 
-        selectedItemColor: Colors.blue,
+        selectedItemColor: AppColors.lightBlue,
         unselectedItemColor: Colors.grey,
 
         type: BottomNavigationBarType.fixed,

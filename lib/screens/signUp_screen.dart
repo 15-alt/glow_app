@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glowapp/constants/glow_colors.dart';
 import 'package:glowapp/screens/setpassword_screen.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -16,28 +17,28 @@ class SignupScreen extends StatelessWidget {
               TextField(
                 decoration: InputDecoration(
                   labelText: "Fullname",
-                  prefixIcon: Icon(Icons.person),
+                  prefixIcon: Icon(Icons.person, color: AppColors.gold),
                 ),
               ),
               SizedBox(height: 10),
               TextField(
                 decoration: InputDecoration(
                   labelText: "Email",
-                  prefixIcon: Icon(Icons.email),
+                  prefixIcon: Icon(Icons.email, color: AppColors.gold),
                 ),
               ),
               SizedBox(height: 10),
               TextField(
                 decoration: InputDecoration(
                   labelText: "Phone",
-                  prefixIcon: Icon(Icons.phone),
+                  prefixIcon: Icon(Icons.phone, color: AppColors.gold),
                 ),
               ),
               SizedBox(height: 10),
               TextField(
                 decoration: InputDecoration(
                   labelText: "Date of birth",
-                  prefixIcon: Icon(Icons.calendar_today),
+                  prefixIcon: Icon(Icons.calendar_today, color: AppColors.gold),
                 ),
               ),
               SizedBox(height: 20),

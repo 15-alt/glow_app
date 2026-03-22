@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glowapp/constants/glow_colors.dart';
 import 'package:glowapp/models/doctor_model.dart';
 import 'package:glowapp/screens/notifications_screen.dart';
 import 'package:glowapp/screens/mini_info.dart';
@@ -87,6 +88,8 @@ class DoctorInfoScreen extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: 0,
+        selectedItemColor: AppColors.lightBlue,
+        unselectedItemColor: Colors.grey,
 
         onTap: (index) {
           if (index == 0) {

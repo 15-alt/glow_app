@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glowapp/models/doctor_model.dart';
 import 'package:glowapp/screens/doctor_info_screen.dart';
+import 'package:glowapp/constants/glow_colors.dart';
 
 Widget doctorCard(BuildContext context, DoctorModel doctor) {
   return Container(
@@ -8,11 +9,11 @@ Widget doctorCard(BuildContext context, DoctorModel doctor) {
     padding: const EdgeInsets.all(12),
 
     decoration: BoxDecoration(
-      color: Colors.blue.shade900,
+      color: AppColors.primaryBlue,
       borderRadius: BorderRadius.circular(16),
 
       boxShadow: const [
-        BoxShadow(color: Colors.black26, blurRadius: 10, offset: Offset(0, 4)),
+        BoxShadow(color: AppColors.gold, blurRadius: 15, offset: Offset(0, 4)),
       ],
     ),
 
@@ -34,7 +35,7 @@ Widget doctorCard(BuildContext context, DoctorModel doctor) {
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
-                  color: Colors.white,
+                  color: AppColors.primaryBlue,
                 ),
               ),
 
@@ -43,7 +44,7 @@ Widget doctorCard(BuildContext context, DoctorModel doctor) {
               /// DEGREE
               Text(
                 doctor.degree,
-                style: const TextStyle(color: Colors.lightGreenAccent),
+                style: const TextStyle(color: AppColors.primaryBlue),
               ),
 
               const SizedBox(height: 4),
@@ -51,7 +52,7 @@ Widget doctorCard(BuildContext context, DoctorModel doctor) {
               /// SPECIALTY
               Text(
                 doctor.specialty,
-                style: const TextStyle(color: Colors.lightGreenAccent),
+                style: const TextStyle(color: AppColors.primaryBlue),
               ),
 
               const SizedBox(height: 8),
@@ -62,7 +63,7 @@ Widget doctorCard(BuildContext context, DoctorModel doctor) {
                   /// INFO BUTTON
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: AppColors.gold,
 
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -91,7 +92,7 @@ Widget doctorCard(BuildContext context, DoctorModel doctor) {
                   const Icon(
                     Icons.chat_bubble_outline,
                     size: 18,
-                    color: Colors.white,
+                    color: AppColors.primaryBlue,
                   ),
 
                   const SizedBox(width: 8),
@@ -99,7 +100,7 @@ Widget doctorCard(BuildContext context, DoctorModel doctor) {
                   const Icon(
                     Icons.phone_outlined,
                     size: 18,
-                    color: Colors.white,
+                    color: AppColors.primaryBlue,
                   ),
 
                   const SizedBox(width: 8),
@@ -107,7 +108,7 @@ Widget doctorCard(BuildContext context, DoctorModel doctor) {
                   const Icon(
                     Icons.favorite_border,
                     size: 18,
-                    color: Colors.white,
+                    color: AppColors.primaryBlue,
                   ),
                 ],
               ),

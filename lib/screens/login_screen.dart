@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:glowapp/screens/signUp_screen.dart';
+import 'package:glowapp/constants/glow_colors.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -16,16 +17,23 @@ class LoginScreen extends StatelessWidget {
           children: [
             Text(
               "welcome",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              decoration: InputDecoration(
-                labelText: "Email or Phone",
-                prefixIcon: Icon(Icons.email),
-                iconColor: Colors.blueAccent,
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: AppColors.primaryBlue,
               ),
             ),
+            SizedBox(height: 15),
+            TextField(
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: AppColors.lightBlue,
+                labelText: "Email or Phone",
+                prefixIcon: Icon(Icons.email),
+                iconColor: AppColors.gold,
+              ),
+            ),
+
             SizedBox(height: 12),
             TextField(
               obscureText: true,

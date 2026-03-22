@@ -18,7 +18,10 @@ class NotificationsScreen extends StatelessWidget {
             onPressed: () {
               // action mark all as read
             },
-            child: const Text("Mark all", style: TextStyle(color: Colors.blue)),
+            child: const Text(
+              "Mark all",
+              style: TextStyle(color: Colors.yellowAccent),
+            ),
           ),
         ],
       ),
@@ -119,7 +122,7 @@ class NotificationItem extends StatelessWidget {
                   },
 
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Colors.yellowAccent,
                     minimumSize: const Size(100, 35),
                   ),
 

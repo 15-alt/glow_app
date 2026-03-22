@@ -76,6 +76,7 @@ class MyApp extends StatelessWidget {
             builder: (context) => DoctorInfoScreen(doctor: doctor),
           );
         }
+        print("glowapp_2");
 
         return null;
       },

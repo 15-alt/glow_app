@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glowapp/constants/glow_colors.dart';
 import 'package:glowapp/models/doctor_model.dart';
+import 'package:glowapp/services/secure_storage_service.dart';
 
 class DoctorScreen extends StatefulWidget {
   const DoctorScreen({super.key});
@@ -57,7 +58,15 @@ class DoctorScreenState extends State<DoctorScreen> {
 
         centerTitle: true,
 
-        actions: const [
+        actions: [
+          IconButton(
+            onPressed: () async {
+              await SecureStorageService().logout();
+              if (!mounted) return;
+              Navigator.pushReplacementNamed(context, "/login");
+            },
+            icon: Icon(Icons.logout),
+          ),
           Icon(Icons.search, color: AppColors.lightBlue),
           SizedBox(width: 12),
           Icon(Icons.tune, color: AppColors.lightBlue),

@@ -1,68 +1,190 @@
 import 'package:flutter/material.dart';
-import 'package:glowapp/constants/glow_colors.dart';
-import 'package:glowapp/screens/setpassword_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignupScreen extends StatelessWidget {
+import '../constants/glow_colors.dart';
+import '../viewmodel/auth/auth_bloc.dart';
+import '../viewmodel/auth/auth_event.dart';
+import '../viewmodel/auth/auth_state.dart';
+
+class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
 
   @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  final TextEditingController nomController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  String role = "client";
+
+  @override
+  void dispose() {
+    nomController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("New Account")),
-      body: Padding(
-        padding: EdgeInsets.all(15),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              TextField(
-                decoration: InputDecoration(
-                  labelText: "Fullname",
-                  prefixIcon: Icon(Icons.person, color: AppColors.gold),
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is AuthLoading) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Création du compte...")),
+          );
+        }
+
+        if (state is AuthSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Compte créé avec succès")),
+          );
+
+          Navigator.pushReplacementNamed(context, "/doctor");
+        }
+
+        if (state is AuthError) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.message)));
+        }
+      },
+
+      child: Scaffold(
+        appBar: AppBar(title: const Text("Sign Up")),
+
+        body: Padding(
+          padding: const EdgeInsets.all(20),
+
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+
+              children: [
+                const Text(
+                  "Create Account",
+
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primaryBlue,
+                  ),
                 ),
-              ),
-              SizedBox(height: 10),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: "Email",
-                  prefixIcon: Icon(Icons.email, color: AppColors.gold),
+
+                const SizedBox(height: 25),
+
+                TextField(
+                  controller: nomController,
+
+                  decoration: const InputDecoration(
+                    labelText: "Nom",
+
+                    prefixIcon: Icon(Icons.person),
+                  ),
                 ),
-              ),
-              SizedBox(height: 10),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: "Phone",
-                  prefixIcon: Icon(Icons.phone, color: AppColors.gold),
+
+                const SizedBox(height: 20),
+
+                TextField(
+                  controller: emailController,
+
+                  decoration: const InputDecoration(
+                    labelText: "Email",
+
+                    prefixIcon: Icon(Icons.email),
+                  ),
                 ),
-              ),
-              SizedBox(height: 10),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: "Date of birth",
-                  prefixIcon: Icon(Icons.calendar_today, color: AppColors.gold),
+
+                const SizedBox(height: 20),
+
+                TextField(
+                  controller: passwordController,
+
+                  obscureText: true,
+
+                  decoration: const InputDecoration(
+                    labelText: "Password",
+
+                    prefixIcon: Icon(Icons.lock),
+                  ),
                 ),
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.g_mobiledata, size: 40, color: Colors.green),
-                  SizedBox(width: 18),
-                  Icon(Icons.facebook, size: 38, color: Colors.blue),
-                  SizedBox(width: 18),
-                  Icon(Icons.apple, size: 38, color: Colors.black),
-                  SizedBox(width: 18),
-                ],
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () => {
-                    Navigator.pushNamed(context, '/setpassword'),
+
+                const SizedBox(height: 20),
+
+                DropdownButtonFormField<String>(
+                  value: role,
+
+                  decoration: const InputDecoration(labelText: "Role"),
+
+                  items: const [
+                    DropdownMenuItem(value: "client", child: Text("Client")),
+
+                    DropdownMenuItem(
+                      value: "estheticienne",
+
+                      child: Text("Esthéticienne"),
+                    ),
+                  ],
+
+                  onChanged: (value) {
+                    setState(() {
+                      role = value!;
+                    });
                   },
-                  child: Text("Sign Up", selectionColor: Colors.black),
                 ),
-              ),
-            ],
+
+                const SizedBox(height: 30),
+
+                SizedBox(
+                  width: double.infinity,
+
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (nomController.text.isEmpty ||
+                          emailController.text.isEmpty ||
+                          passwordController.text.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Tous les champs sont obligatoires"),
+                          ),
+                        );
+
+                        return;
+                      }
+
+                      context.read<AuthBloc>().add(
+                        RegisterEvent(
+                          nom: nomController.text.trim(),
+
+                          email: emailController.text.trim(),
+
+                          password: passwordController.text.trim(),
+
+                          role: role,
+                        ),
+                      );
+                    },
+
+                    child: const Text("Créer un compte"),
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
+                Center(
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+
+                    child: const Text("J'ai déjà un compte"),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -44,8 +44,6 @@ class AddCardScreen extends StatelessWidget {
             const SizedBox(height: 20),
             const TextField(decoration: InputDecoration(labelText: "CVV")),
 
-            const Spacer(),
-
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
